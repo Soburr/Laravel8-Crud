@@ -1,11 +1,18 @@
-@extends('layouts.app')
+@extends('student.layout')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
     <div class="col-12">
-                <a href="posts/create" class="btn btn-primary mb-2">Students Information</a> 
+                <a href="student/create" class="btn btn-primary mb-2">Create New Students Info</a> 
                 <br>
+
+                   @if ($message = Session::get('success'))
+                     <div class="alert alert-success">
+                         <p>{{ $message }}</p>
+                     </div>
+                   @endif
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -24,9 +31,9 @@
                             <td>{{ $student->course }}</td>
                             <td>{{ $student->fee }}</td>
                             <td>
-                            <a href="student/{{$student->id}}" class="btn btn-primary">Show</a>
-                            <a href="student/{{$student->id}}/edit" class="btn btn-primary">Edit</a>
-                            <form action="student/{{$student->id}}" method="post" class="d-inline">
+                            <a href="{{ route('student.show', $student)}}" class="btn btn-primary">Show</a>
+                        <a href="{{ route('student.edit', $student)}}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('student.destroy', $student)}}" method="post" class="d-inline">
                                 {{ csrf_field() }}
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Delete</button>
