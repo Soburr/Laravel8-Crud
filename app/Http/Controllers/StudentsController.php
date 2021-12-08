@@ -27,7 +27,7 @@ class StudentsController extends Controller
        $student->fee = $request->fee;
 
        $student->save();
-         return redirect('/home')->with('success', 'Student details has been added Successfully!');
+         return redirect('/student')->with('success', 'Student details has been added Successfully!');
    }
 
    public function show(Students $student)
@@ -54,7 +54,7 @@ class StudentsController extends Controller
     public function destroy(Students $student)
     {
         $student->delete();
-        return redirect('/home')->with('success','Student details has been deleted successfully!');
+        return redirect('/student')->with('success','Student details has been deleted successfully!');
     }
 
 }
