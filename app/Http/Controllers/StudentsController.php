@@ -6,7 +6,7 @@ use App\Models\Students;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
-{
+{      
    public function index(){
 
        $student = Students::all();
@@ -14,7 +14,6 @@ class StudentsController extends Controller
    }
 
    public function create(){
-
     return view('student.create');
 }
 
@@ -43,12 +42,13 @@ class StudentsController extends Controller
     public function update(Students $student, Request $request)
     {
         $request->validate(['studentname' => 'required', 'course' => 'required', 'fee' => 'required']);
-        $student->title = $request->title;
-        $student->body = $request->body;
-        $student->published_at = $request->published_at;
+        $student->studentname = $request->studentname;
+        $student->course = $request->course;
+        $student->fee = $request->fee;
+
 
         $student->save();
-        return redirect('/home')->with('success','Student info has been updated successfully!');
+        return redirect('/student')->with('success','Student info has been updated successfully!');
     }
 
     public function destroy(Students $student)
