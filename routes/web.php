@@ -13,16 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-}); 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-
-Route::resource('student', 'App\Http\Controllers\StudentsController');
+Route::view('/', 'welcome'); 
+Route::group(['middleware' => 'auth'], function () {
+    // Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::resource('student', 'App\Http\Controllers\StudentsController');  
+});
 
 
 
