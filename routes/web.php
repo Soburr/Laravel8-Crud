@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\NewUserWelcomeMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/email', function(){
+    return new NewUserWelcomeMail ();
+});
 
 Route::view('/', 'welcome'); 
 Route::group(['middleware' => 'auth'], function () {
