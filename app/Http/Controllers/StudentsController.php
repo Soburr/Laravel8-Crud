@@ -18,16 +18,28 @@ class StudentsController extends Controller
 }
 
    public function store(Request $request){
-  
-       $request->validate(['studentname' => 'required', 'course' => 'required', 'fee' => 'required']);
-       $student= new Students();
-       $student->studentname = $request->studentname;
-       $student->course = $request->course;
-       $student->fee = $request->fee;
 
-       $student->save();
-         return redirect('/student')->with('success', 'Student details has been added Successfully!');
-   }
+        $attributes = $request->validate([
+            'studentname' => ['required', 'string', 'unique:students'],
+            'course' => ['required'],
+            'fee' => ['required']
+        ]);
+
+        Students::create($attributes);
+
+        return redirect('/student')->with('success', 'Student details has been added Successfully!');
+  }
+  
+    //    $request->validate(['studentname' => 'required', 'course' => 'required', 'fee' => 'required',]);
+    //    $student= new Students();
+
+    //    $student->studentname = $request->studentname;
+    //    $student->course = $request->course;
+    //    $student->fee = $request->fee;
+
+      //    $student->save();
+
+
 
    public function show(Students $student)
     {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Notifications\WelcomeEmailNotification;
+use App\Notifications\WelcomeMailNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -48,12 +48,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->notify(new WelcomeEmailNotification()); 
-        return $user;
+        $user->notify(new WelcomeMailNotification());
 
         event(new Registered($user));
 
         Auth::login($user);
+
 
         return redirect(RouteServiceProvider::HOME);
     }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Mail\NewUserWelcomeMail;
+use App\Mail\NewUserMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/email', function(){
-    return new NewUserWelcomeMail ();
+    return new NewUserMail ();
 });
 
 Route::view('/', 'welcome'); 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware('auth')->group(function () {
     // Route::view('/dashboard', 'dashboard')->name('dashboard');
     Route::resource('student', 'App\Http\Controllers\StudentsController');  
 });
 
-
+Mail::to('test@gmail.com')->send(new NewUserMail);
 
 require __DIR__.'/auth.php';

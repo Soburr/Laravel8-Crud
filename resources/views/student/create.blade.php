@@ -8,6 +8,15 @@
                 <div class="card-header">Create Post</div>
 
                 <div class="card-body">
+                    
+                    @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-success" role="alert">
+                        {{ $error }}
+                    </div>
+                    @endforeach
+                @endif
+                
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -18,7 +27,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Student Name</label>
-                            <input type="text" name="studentname" class="form-control">
+                            <input type="text" name="studentname" class="form-control" value="{{ old('studentname')}}">
                         </div>
 
                         <div class="form-group">
