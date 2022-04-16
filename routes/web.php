@@ -27,3 +27,8 @@ Route::middleware('auth')->group(function () {
 Mail::to('test@gmail.com')->send(new NewUserMail);
 
 require __DIR__.'/auth.php';
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
