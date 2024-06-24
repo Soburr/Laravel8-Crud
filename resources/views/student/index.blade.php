@@ -1,7 +1,8 @@
+
 @extends('student.layout')
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
     <div class="col-12">
                 <a href="student/create" class="btn btn-primary mb-2">Create New Students Info</a> 
